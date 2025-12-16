@@ -75,3 +75,287 @@ Node.js is commonly used for:
 
 
 ### ✅ Day 01 Completed
+
+
+
+
+\# 🚀 Node.js Learning – Day 02
+
+\## Topic: How Node.js Works Internally (Event Loop & Architecture)
+
+\---
+
+\## 📌 Overview
+
+Day 02 focuses on understanding \*\*how Node.js works internally\*\*.
+
+This knowledge is critical for writing \*\*high-performance, scalable, and production-ready\*\* Node.js applications.
+
+\---
+
+\## 🔹 JavaScript Execution in Node.js
+
+Node.js uses \*\*Google Chrome’s V8 JavaScript Engine\*\* to execute JavaScript code.
+
+\### V8 Responsibilities:
+
+\- Parses JavaScript
+
+\- Compiles JavaScript into machine code
+
+\- Executes synchronous code
+
+\- Manages memory (heap & garbage collection)
+
+\> V8 executes JavaScript only. It does not handle I/O operations.
+
+\---
+
+\## 🔹 Single-Threaded Nature of Node.js
+
+Node.js runs JavaScript on a \*\*single main thread\*\*.
+
+\- All synchronous code runs in the \*\*Call Stack\*\*
+
+\- Only one function executes at a time
+
+\- Blocking the call stack blocks the entire application
+
+\---
+
+\## ❌ Blocking Operations
+
+Blocking operations pause execution until the task completes.
+
+\### Problems:
+
+\- Blocks the call stack
+
+\- Causes poor performance
+
+\- Not suitable for production environments
+
+\---
+
+\## 🟢 Non-Blocking Operations
+
+Non-blocking operations allow Node.js to continue executing other code while tasks run in the background.
+
+\### Example:
+
+\`\`\`js
+
+const fs = require("fs");
+
+fs.readFile("data.txt", "utf-8", (err, data) => {
+
+console.log(data);
+
+});
+
+console.log("This will run first");
+
+### Advantages:
+
+*   High performance
+    
+*   Better scalability
+    
+*   Ideal for Node.js applications
+    
+
+## 🔹 What is the Event Loop?
+
+The **Event Loop** is the mechanism that enables Node.js to perform **non-blocking asynchronous operations**.
+
+It allows Node.js to:
+
+*   Execute asynchronous code
+    
+*   Handle multiple operations efficiently
+    
+*   Avoid blocking the main thread
+    
+
+The Event Loop continuously monitors:
+
+*   Call Stack
+    
+*   Callback Queue
+    
+*   Microtask Queue
+    
+
+## 🔹 Core Components of Node.js Architecture
+
+### 1️⃣ Call Stack
+
+*   Executes synchronous JavaScript code
+    
+*   Follows **LIFO (Last In, First Out)** order
+    
+
+### 2️⃣ Node APIs
+
+Examples:
+
+*   fs
+    
+*   http
+    
+*   timers
+    
+
+Responsibilities:
+
+*   Handle asynchronous operations
+    
+*   Communicate with the operating system
+    
+
+### 3️⃣ Thread Pool (libuv)
+
+*   Executes heavy or blocking tasks
+    
+*   Default size: **4 threads**
+    
+
+Used for:
+
+*   File system operations
+    
+*   Cryptography
+    
+*   DNS lookup
+    
+*   Compression
+    
+
+### 4️⃣ Callback Queue
+
+*   Stores completed asynchronous callbacks
+    
+*   Uses **FIFO (First In, First Out)** order
+    
+
+### 5️⃣ Microtask Queue
+
+*   Higher priority than the callback queue
+    
+
+Includes:
+
+*   process.nextTick()
+    
+*   Promise callbacks (.then())
+    
+
+## 🔹 Event Loop Workflow
+
+1.  Execute all synchronous code in the call stack
+    
+2.  Asynchronous tasks are delegated to Node APIs
+    
+3.  Heavy tasks are processed in the thread pool
+    
+4.  Completed callbacks are placed into queues
+    
+5.  Event Loop pushes callbacks to the call stack
+    
+6.  Callbacks are executed
+    
+
+## 🔹 Event Loop Phases
+
+### 🕒 Timers Phase
+
+*   Executes callbacks from setTimeout() and setInterval()
+    
+
+### 📥 I/O Callbacks Phase
+
+*   Handles network and file system callbacks
+    
+
+### ⚙️ Idle / Prepare Phase
+
+*   Internal use by Node.js
+    
+
+### 🔁 Poll Phase
+
+*   Retrieves new I/O events
+    
+*   Executes I/O callbacks
+    
+
+### ✅ Check Phase
+
+*   Executes callbacks registered using setImmediate()
+    
+
+### 🔚 Close Callbacks Phase
+
+*   Executes cleanup callbacks
+    
+
+## 🔹 Microtasks vs Macrotasks
+
+### Microtasks
+
+*   process.nextTick()
+    
+*   Promises (.then())
+    
+
+### Macrotasks
+
+*   setTimeout
+    
+*   setInterval
+    
+*   setImmediate
+    
+*   I/O callbacks
+    
+
+⚠️ Microtasks always execute **before** macrotasks.
+
+## 🔹 Common Mistakes to Avoid
+
+*   Using blocking methods like readFileSync
+    
+*   Writing CPU-intensive loops
+    
+*   Not handling asynchronous errors
+    
+*   Overusing process.nextTick()
+    
+
+## 🔹 Real-World Use Cases
+
+Node.js is ideal for:
+
+*   Chat applications
+    
+*   Real-time dashboards
+    
+*   Streaming services
+    
+*   API servers
+    
+
+These systems rely heavily on **non-blocking I/O**.
+
+## 🔹 Key Takeaways (Day 02)
+
+*   Node.js is single-threaded but asynchronous
+    
+*   The Event Loop is the backbone of Node.js
+    
+*   Non-blocking code ensures scalability
+    
+*   Understanding internals improves performance
+    
+
+### ✅ Day 02 Completed
