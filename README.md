@@ -359,3 +359,149 @@ These systems rely heavily on **non-blocking I/O**.
     
 
 ### ✅ Day 02 Completed
+
+
+Day 03 – Modules & First Node.js Program
+
+* * *
+
+## 🔹 What is a Module in Node.js?
+
+In Node.js, every file is treated as a separate module. A module is simply a reusable block of code that has its own scope.
+
+Modules help in:
+
+*   Structuring applications
+    
+*   Avoiding repetition
+    
+*   Improving maintainability
+    
+*   Preventing global namespace pollution
+    
+
+* * *
+
+## 🔹 Why Modules Are Important
+
+Without modules:
+
+*   Code becomes messy and hard to debug
+    
+*   Everything lives in one file
+    
+*   Scaling becomes difficult
+    
+
+With modules:
+
+*   Code becomes organized
+    
+*   Different developers can work independently
+    
+*   Application becomes scalable
+    
+
+* * *
+
+## 🔹 Types of Modules in Node.js
+
+There are 3 types:
+
+1.  **Built-in Modules**  
+    Provided by Node.js itself  
+    Examples:
+    
+    *   fs (file system)
+        
+    *   http
+        
+    *   path
+        
+    *   os
+        
+2.  **Custom Modules**  
+    Created by developers for their code  
+    Example: function files, utilities
+    
+3.  **Third-Party Modules**  
+    Installed using npm  
+    Examples: express, mongoose, lodash
+    
+
+* * *
+
+## 🔹 CommonJS Module System (Default in Node.js)
+
+Node.js uses CommonJS module syntax.
+
+Exporting code:
+
+`module.exports = value`
+
+Importing code:
+
+`const value = require('./file')`
+
+How it works internally:
+
+*   Node wraps each file in a function
+    
+*   Gives module scope
+    
+*   Returns exports object
+    
+
+* * *
+
+## 🔹 How Node Loads Modules Internally
+
+When you use require():
+
+1.  Node checks if it’s a built-in module
+    
+2.  If not, checks local files
+    
+3.  Then looks in node\_modules
+    
+4.  Wraps the module code
+    
+5.  Executes it
+    
+6.  Stores result in cache
+    
+
+Because of caching:
+
+*   Module runs once
+    
+*   Future require() returns cached version
+    
+
+* * *
+
+## 🔹 Small First Node.js Program
+
+Create a file:
+
+`console.log("Hello Node.js");`
+
+Run in terminal:
+
+`node filename.js`
+
+This shows that JavaScript runs outside the browser.
+
+* * *
+
+## Key Takeaways (Day 03)
+
+*   Every file in Node.js is a module
+    
+*   Modules make code organized and scalable
+    
+*   CommonJS is the default syntax
+    
+*   require() loads modules
+    
+*   Node caches modules for better performance
